@@ -184,7 +184,7 @@ public class FilmDaoImpl implements FilmDAO {
 				int id = rs.getInt("id");
 				String title = rs.getString("title");
 				String desc = rs.getString("description");
-				short releaseYear = rs.getShort("release_year");
+				int releaseYear = rs.getInt("release_year");
 				int langId = rs.getInt("language_id");
 				int rentDur = rs.getInt("rental_duration");
 				double rate = rs.getDouble("rental_rate");

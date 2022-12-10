@@ -31,39 +31,38 @@ public class FilmController {
 	@RequestMapping(path="search.do", method=RequestMethod.GET, params="keyword")
 	public ModelAndView findByKeyword(String keyword) {
 		ModelAndView mv = new ModelAndView();
-		List<Film> film = filmDao.findFilmByKeyword(keyword);
-		mv.addObject("film", film);
-		mv.setViewName("WEB-INF/result.jsp");
+		List<Film> films = filmDao.findFilmByKeyword(keyword);
+		mv.addObject("films", films);
+		mv.setViewName("WEB-INF/keyword.jsp");
 
 		
 		return mv;
 		
 	}
-<<<<<<< HEAD
 
-
-	@RequestMapping(path="search.do", method=RequestMethod.GET, params="createFilm")
-	public ModelAndView createFilm();
-=======
 	
 	@RequestMapping(path="search.do", method=RequestMethod.GET, params="createFilm")
-	public ModelAndView createFilm(String title, String description, int release_year, int language_id) {
+	public ModelAndView createFilm(String title, String description, int releaseYear, int languageId, int rentalDuration, int length, double replacementCost, String rating ) {
 		ModelAndView mv = new ModelAndView();
 		Film film = new Film();
 		film.setTitle(title);
 		film.setDescription(description);
-		film.setReleaseYear(release_year);
-		film.setLanguageId(language_id);
+		film.setReleaseYear(releaseYear);
+		film.setLanguageId(languageId);
+		film.setRentalDuration(rentalDuration);
+		film.setLength(length);
+		film.setReplacementCost(replacementCost);
+		film.setRating(rating);
 		
 		filmDao.createFilm(film);
 		mv.addObject("film", film);
-		mv.setViewName("WEB-INF/result.jsp");
+		mv.setViewName("WEB-INF/edit.jsp");
 		
 		return mv;
 		
 	}
 	
->>>>>>> 5dc275685c7ec3151a463a21e2f61dd72307d4e9
+
 }
 
 	
