@@ -23,8 +23,8 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.findFilmById(id);
 		mv.addObject("film", film);
-		mv.setViewName("WEB-INF/result.jsp");
-		
+		mv.setViewName("WEB-INF/home.jsp");
+				
 		return mv;
 	}
 	
@@ -39,6 +39,11 @@ public class FilmController {
 		
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(path="search.do", method=RequestMethod.GET, params="createFilm")
 	public ModelAndView createFilm()
 }
+=======
+	
+}
+>>>>>>> 23aeb169fbdb087dcc361fc732d8ab9cb1edeb5a
