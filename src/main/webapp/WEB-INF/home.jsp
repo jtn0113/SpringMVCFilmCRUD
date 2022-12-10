@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,26 +9,41 @@
 <title>MVC Film SIte</title>
 </head>
 <body>
-<h1>SD Movie Data Base (SMDB)!</h1>
+<div class="container">
+		
+	<h1>SD Movie Data Base (SMDB)!</h1>
 
-<form:form action="search.do" method="GET" modelAttribute="film">
-	<form:label path="id"> Film Id: </form:label>
-	<form:input path="id"/>
-	<br/>
-	<input type="submit" value="Search Film"/>
+	<h2>Film Results</h2>
+
+	<ul>
+		<li> Id: ${film.id }</li>
+		<li>Title: ${film.title}</li>
+		<li>Description: ${film.description}</li>
+		<li>Release Year: ${film.releaseYear}</li>
+		<li>Language Id: ${film.languageId}</li>
+		<li>Rental Duration: ${film.rentalDuration}</li>
+		<li>Rental Rate: ${film.rentalRate}</li>
+		<li>Length: ${film.length}</li>
+		<li>Replacement Cost: ${film.replacementCost}</li>
+		<li>Film Rating: ${film.rating}</li>
+		<li>Special Features: ${film.specialFeatures}</li>
+		
+		
+	</ul>
 	
 	
-</form:form>
+	<p>
+			<a href="index.html" class="btn btn-primary" role="button">Back to Search</a>
+		</p>
+		<p>
+			<a href="editFilm.jsp" class="btn btn-secondary" role="button">Edit film</a>
+		</p>
 	
-<form:form action="search.do" method="GET" modelAttribute="film">
 	
-	<form:label path="keyword"> Keyword: </form:label>
-	<form:input path="keyword" />
-	<br/>
 	
-	<input type="submit" value="Search Film"/>
-	
-</form:form>
+
+
+</div>
 
 </body>
 </html>
