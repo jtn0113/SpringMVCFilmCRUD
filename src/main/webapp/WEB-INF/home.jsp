@@ -9,7 +9,7 @@
 <title>MVC Film SIte</title>
 </head>
 <body>
-<<<<<<< HEAD
+
 <div class="container">
 		
 	<h1>SD Movie Data Base (SMDB)!</h1>
@@ -27,7 +27,7 @@
 		<li>Length: ${film.length}</li>
 		<li>Replacement Cost: ${film.replacementCost}</li>
 		<li>Film Rating: ${film.rating}</li>
-		<li>Special Features: ${film.specialFeatures}</li>
+		
 		
 		
 	</ul>
@@ -37,7 +37,7 @@
 			<a href="index.html" class="btn btn-primary" role="button">Back to Search</a>
 		</p>
 		<p>
-			<a href="editFilm.jsp" class="btn btn-secondary" role="button">Edit film</a>
+			<a href="WEB-INF/editFilm.jsp" class="btn btn-secondary" role="button">Edit film</a>
 		</p>
 	
 	
@@ -45,10 +45,6 @@
 
 
 </div>
-=======
-<h1>SD Movie Data Base (SMDB)! </h1>
-
->>>>>>> 243e2487edadf54620110663e10d460b3fd73e5c
 
 </body>
 </html>

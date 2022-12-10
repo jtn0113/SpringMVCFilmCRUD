@@ -39,12 +39,11 @@ public class FilmController {
 		return mv;
 		
 	}
-	
+
 
 	@RequestMapping(path="search.do", method=RequestMethod.GET, params="createFilm")
 	public ModelAndView createFilm();
 }
 
 	
-
 
