@@ -35,7 +35,8 @@
 	
 	<p>
 		<p>
-			<a href="WEB-INF/editFilm.jsp" class="btn btn-secondary" role="button">Edit film</a>
+			<a href="goToUpdateFilm.do" class="btn btn-secondary" role="button">Edit film</a>
+		
 		</p>
 	
 			<a href="index.html" class="btn btn-primary" role="button">Back to Search</a>
