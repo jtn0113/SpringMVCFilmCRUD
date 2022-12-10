@@ -8,34 +8,27 @@
 </head>
 <body>
 
-	<h1>Edit Film Here!</h1>
-<form action="updateFilm.do" method="GET" >
-		Title:
-	 <input type="text" name="title" value="${film.title}"/>
-	 <br>
-	 	Description:
-	 <input type="text" name="description"value="${film.description}" />
-	 <br>
-	 	Release Year:
-	 <input type="text" name="releaseYear" value="${film.releaseYear}"/>
-	 <br>
-	 	Rental Duration:
-	 <input type="text" name="rentalDuration" value="${film.rentalDuration}"/>
-	 <br>
-	   Length: 
-    <input type="text"  name="length" value="${film.length}" />
-    <br>
-	   Replacement Cost: 
-    <input type="text" name="replacementCost" value="${film.replacementCost}" />
-    <br>
-	   Rating: 
-    <input type="text" name="rating" value="${film.rating}" />
-    <br>
-    <input type="submit" value="submit" >
-    <input >
+	<h1>Edited Film Results!</h1>
 	
-	</form>
+	
+	
+<ul>
+		<li> Id: ${film.id }</li>
+		<li>Title: ${film.title}</li>
+		<li>Description: ${film.description}</li>
+		<li>Release Year: ${film.releaseYear}</li>
+		<li>Language Id: ${film.languageId}</li>
+		<li>Rental Duration: ${film.rentalDuration}</li>
+		<li>Rental Rate: ${film.rentalRate}</li>
+		<li>Length: ${film.length}</li>
+		<li>Replacement Cost: ${film.replacementCost}</li>
+		<li>Film Rating: ${film.rating}</li>
+		
+		
+		
+	</ul>
 
 
+	<p><a href="index.html" class="btn btn-primary" role="button">Return to Main Menu </a></p>
 </body>
 </html>

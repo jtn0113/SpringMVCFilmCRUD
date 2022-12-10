@@ -82,10 +82,14 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path="goToUpdateFilm.do", method=RequestMethod.GET)
-	public ModelAndView goToUpdateFilm() {
+	public ModelAndView goToUpdateFilm(String title) {
 		ModelAndView mv = new ModelAndView();
+		Film film = new Film();
+		film.setTitle(title);
 		
 		
+		//filmDao.goToUpdateFilm(film);
+		mv.addObject("film",film);
 		mv.setViewName("WEB-INF/editFilm.jsp");
 		return mv;
 	}

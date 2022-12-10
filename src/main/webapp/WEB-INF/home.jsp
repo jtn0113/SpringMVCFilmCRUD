@@ -15,7 +15,8 @@
 	<h1>SD Movie Data Base (SMDB)!</h1>
 
 	<h2>Film Results</h2>
-
+	
+	
 	<ul>
 		<li> Id: ${film.id }</li>
 		<li>Title: ${film.title}</li>
@@ -32,15 +33,43 @@
 		
 	</ul>
 	
+	<h3>Make edits to fields below or return to 
 	
-	<p>
-		<p>
-			<a href="goToUpdateFilm.do" class="btn btn-secondary" role="button">Edit film</a>
-		
-		</p>
+	<a href="index.html" class="btn btn-primary" role="button">main menu </a></h3>
+
+
+
+<form action="updateFilm.do" method="GET" >
+
+		Id:
+	 <input type="text" id="id" name="id" value="${film.id}"/>
+	 <br>
+		Title:
+	 <input type="text" id="title" name="title" value="${film.title}"/>
+	 <br>
+	 	Description:
+	 <input type="text" name="description"value="${film.description}" />
+	 <br>
+	 	Release Year:
+	 <input type="text" name="releaseYear" value="${film.releaseYear}"/>
+	 <br>
+	 	Rental Duration:
+	 <input type="text" name="rentalDuration" value="${film.rentalDuration}"/>
+	 <br>
+	   Length: 
+    <input type="text"  name="length" value="${film.length}" />
+    <br>
+	   Replacement Cost: 
+    <input type="text" name="replacementCost" value="${film.replacementCost}" />
+    <br>
+	   Rating: 
+    <input type="text" name="rating" value="${film.rating}" />
+    <br>
+    <div>
+    <input type="submit" value="Submit" >
+	</div>
+	</form>
 	
-			<a href="index.html" class="btn btn-primary" role="button">Back to Search</a>
-		</p>
 	
 	
 
