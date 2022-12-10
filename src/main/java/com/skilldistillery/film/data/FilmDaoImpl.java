@@ -25,6 +25,32 @@ public class FilmDaoImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public String findCategoryByFilmId(int id) {
+		String user = "student";
+		String pass = "student";
+		String category = "";
+		
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "select category.name from category join film_category on film_category.category_id = category.id join film on film.id = film_category.film_id where film.id = ?";
+
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				category = rs.getString("name");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return category;
+	}
+	
 	@Override
 	public Film findFilmById(int filmId) {
 		String user = "student";
@@ -456,6 +482,41 @@ public class FilmDaoImpl implements FilmDAO {
 		return true;
 	}
 	
+//	@Override
+//	public boolean deleteFilm(int id) {
+//		String user = "student";
+//		String pass = "student";
+//		Connection conn = null;
+//		try {
+//			conn = DriverManager.getConnection(URL, user, pass);
+//
+//			conn.setAutoCommit(false); // START TRANSACTION
+//
+//			String sql = "DELETE FROM film_actor WHERE film_id = ?";
+//			PreparedStatement stmt = conn.prepareStatement(sql);
+//			stmt.setInt(1, id);
+//			int updateCount = stmt.executeUpdate();
+//
+//			sql = "DELETE FROM film WHERE id = ?";
+//			stmt = conn.prepareStatement(sql);
+//			stmt.setInt(1, id);
+//			updateCount = stmt.executeUpdate();
+//
+//			conn.commit(); // COMMIT TRANSACTION
+//		} catch (SQLException sqle) {
+//			sqle.printStackTrace();
+//			if (conn != null) {
+//				try {
+//					conn.rollback();
+//				} catch (SQLException sqle2) {
+//					System.err.println("Error trying to rollback");
+//				}
+//			}
+//			return false;
+//		}
+//		return true;
+//	}
+	
 	@Override
 	public boolean updateFilm(Film film) {
 		String user = "student";
@@ -465,8 +526,9 @@ public class FilmDaoImpl implements FilmDAO {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false); // START TRANSACTION
 
-			String sql = "UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=? rating=?" 
-			+ " WHERE id=?";
+			String sql = "UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=? WHERE id=?";
+			System.out.println(film.getId());
+			System.out.println(film.getTitle());
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
 
@@ -480,24 +542,20 @@ public class FilmDaoImpl implements FilmDAO {
 			stmt.setDouble(8, film.getReplacementCost());
 			stmt.setString(9, film.getRating());
 			stmt.setInt(10, film.getId());
-
-			int updateCount = stmt.executeUpdate();
+			
 			System.out.println(stmt);
 
-			if (updateCount == 1) {
-				// Replace actor's film list
-				sql = "DELETE FROM film_actor WHERE film_id = ?";
-				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, film.getId());
-				updateCount = stmt.executeUpdate();
+			int updateCount = stmt.executeUpdate();
 
-				sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
-				stmt = conn.prepareStatement(sql);
-				for (Actor actor : film.getActors()) {
-					stmt.setInt(1, film.getId());
-					stmt.setInt(2, actor.getId());
-					updateCount = stmt.executeUpdate();
-				}
+			if (updateCount == 1) {
+//				// Replace actor's film list
+//				sql = "DELETE FROM film_actor WHERE film_id = ?";
+//				stmt = conn.prepareStatement(sql);
+//				stmt.setInt(1, film.getId());
+//				updateCount = stmt.executeUpdate();
+//				
+//				System.out.println(stmt);
+//				stmt = conn.prepareStatement(sql);
 				conn.commit(); // COMMIT TRANSACTION
 				conn.close();
 			}
@@ -512,7 +570,7 @@ public class FilmDaoImpl implements FilmDAO {
 				}
 			}
 			return false;
-		}
+		} 
 		return true;
 	}
 

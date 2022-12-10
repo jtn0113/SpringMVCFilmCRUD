@@ -22,7 +22,9 @@ public class FilmController {
 	public ModelAndView getFilmDetails(int id) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.findFilmById(id);
+		String category = filmDao.findCategoryByFilmId(id);
 		mv.addObject("film", film);
+		mv.addObject("category", category);
 		mv.setViewName("WEB-INF/home.jsp");
 		
 		return mv;
@@ -41,10 +43,12 @@ public class FilmController {
 	}
 
 	
+	
 	@RequestMapping(path="updateFilm.do", method=RequestMethod.GET )
-	public ModelAndView updateFilm( String title, String description, int releaseYear, int rentalDuration, int length, double replacementCost, String rating ) {
+	public ModelAndView updateFilm(int id, String title, String description, int releaseYear, int rentalDuration, int length, double replacementCost, String rating ) {
 		ModelAndView mv = new ModelAndView();
 		Film film = new Film();
+		film.setId(id);
 		film.setTitle(title);
 		film.setDescription(description);
 		film.setReleaseYear(releaseYear);
@@ -53,9 +57,12 @@ public class FilmController {
 		film.setReplacementCost(replacementCost);
 		film.setRating(rating);
 		
-		filmDao.updateFilm(film);
-		mv.addObject("film", film);
-		mv.setViewName("WEB-INF/editFilm.jsp");
+		if(filmDao.updateFilm(film)) {
+			mv.addObject("film", film);
+			mv.setViewName("WEB-INF/editFilm.jsp");
+		} else {
+			mv.setViewName("failed.html");
+		}
 		
 		return mv;
 		
@@ -81,16 +88,21 @@ public class FilmController {
 		
 	}
 	
-	@RequestMapping(path="goToUpdateFilm.do", method=RequestMethod.GET)
-	public ModelAndView goToUpdateFilm(String title) {
+	@RequestMapping(path="deleteFilm.do", method = RequestMethod.GET)
+	public ModelAndView deleteFilm(int id) {
 		ModelAndView mv = new ModelAndView();
-		Film film = new Film();
-		film.setTitle(title);
+		Film film = filmDao.findFilmById(id);
+//		filmDao.deleteFilm(film);
+//		
+//		mv.addObject("film", film);
+//		mv.setViewName("index.html");
+		if(filmDao.deleteFilm(film)) {
+			mv.addObject("film", film);
+			mv.setViewName("index.html");
+		} else {
+			mv.setViewName("failed.html");
+		}
 		
-		
-		//filmDao.goToUpdateFilm(film);
-		mv.addObject("film",film);
-		mv.setViewName("WEB-INF/editFilm.jsp");
 		return mv;
 	}
 

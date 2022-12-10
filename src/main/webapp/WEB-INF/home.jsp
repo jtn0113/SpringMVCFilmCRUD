@@ -13,12 +13,23 @@
 <div class="container">
 		
 	<h1>SD Movie Data Base (SMDB)!</h1>
+	
+	<c:choose>
+		<c:when test="${empty film.id}">
+		NO FILM FOUND <br>
+		<a href="index.html" class="btn btn-primary" role="button">Return to main menu </a>
+		</c:when>
+		<c:otherwise>
+		
+		
+
+
 
 	<h2>Film Results</h2>
 	
 	
 	<ul>
-		<li> Id: ${film.id }</li>
+		<li> Id: ${film.id}</li>
 		<li>Title: ${film.title}</li>
 		<li>Description: ${film.description}</li>
 		<li>Release Year: ${film.releaseYear}</li>
@@ -28,7 +39,14 @@
 		<li>Length: ${film.length}</li>
 		<li>Replacement Cost: ${film.replacementCost}</li>
 		<li>Film Rating: ${film.rating}</li>
-		
+		<li>Category: ${category }</li>
+		<li>Actors:
+		<ul>
+		<c:forEach var="actor" items="${film.actors }">
+			<li>${actor.firstName} ${actor.lastName }</li>
+		</c:forEach>
+		</ul>
+		</li>
 		
 		
 	</ul>
@@ -41,8 +59,7 @@
 
 <form action="updateFilm.do" method="GET" >
 
-		Id:
-	 <input type="text" id="id" name="id" value="${film.id}"/>
+	 <input type="hidden" id="id" name="id" value="${film.id}"/>
 	 <br>
 		Title:
 	 <input type="text" id="title" name="title" value="${film.title}"/>
@@ -69,6 +86,24 @@
     <input type="submit" value="Submit" >
 	</div>
 	</form>
+	
+	<br><br>
+	
+	<h1>DELETE FILM</h1>
+	<form action="deleteFilm.do" method="GET" >
+
+	 <input type="hidden" id="id" name="id" value="${film.id}"/>
+	 
+    <br>
+    <div>
+    <input type="submit" value="DELETE FILM" >
+	</div>
+	</form>
+	
+		</c:otherwise>
+	</c:choose>
+	
+	
 	
 	
 	
