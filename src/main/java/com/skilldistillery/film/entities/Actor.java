@@ -8,8 +8,7 @@ public class Actor {
 	private int id; 
 	private String firstName; 
 	private String lastName; 
-	private List<Film>films;  // not required for the hw!
-	
+	private List<Film>films;  
 
 	public Actor() {
 		
