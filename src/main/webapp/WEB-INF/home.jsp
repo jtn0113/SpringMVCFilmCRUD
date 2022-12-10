@@ -9,6 +9,7 @@
 <title>MVC Film SIte</title>
 </head>
 <body>
+<<<<<<< HEAD
 <div class="container">
 		
 	<h1>SD Movie Data Base (SMDB)!</h1>
@@ -44,6 +45,10 @@
 
 
 </div>
+=======
+<h1>SD Movie Data Base (SMDB)! </h1>
+
+>>>>>>> 243e2487edadf54620110663e10d460b3fd73e5c
 
 </body>
 </html>
