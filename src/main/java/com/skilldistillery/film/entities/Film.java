@@ -11,7 +11,7 @@ public class Film {
 	private String description; 
 	private int releaseYear; 
 	private int languageId;  
-	private String language;// do not show id but show STRING instead  
+	private String language;
 	private int rentalDuration;
 	private double rentalRate; 
 	private int length;
